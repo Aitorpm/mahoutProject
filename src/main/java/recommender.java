@@ -22,8 +22,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class Recommender {
     public static void main(String[] args) throws Exception {
         DataModel model = new FileDataModel(new File("src/main/input/dataset.csv")); //load data from file
@@ -35,8 +33,6 @@ public class Recommender {
         //recommendations--> list of RecommendedItem objects with that obtain: movie_id and rate
         //first param--> userid and second param --> number of movies recommended
         List<RecommendedItem> recommendations = recommender.recommend(2, 10);
-        //System.out.println(recommendations);
-
 
         /* Print the id of the items that we recommended
         for (RecommendedItem recommendedItem : recommendations) {
