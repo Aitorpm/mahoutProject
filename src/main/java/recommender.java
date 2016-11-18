@@ -33,7 +33,8 @@ public class Recommender {
         UserBasedRecommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
 
         //recommendations--> list of RecommendedItem objects with that obtain: movie_id and rate
-        List<RecommendedItem> recommendations = recommender.recommend(20, 40); //recommend 10 users to user with userid = 2
+        //first param--> userid and second param --> number of movies recommended
+        List<RecommendedItem> recommendations = recommender.recommend(2, 10);
         //System.out.println(recommendations);
 
 
@@ -43,7 +44,11 @@ public class Recommender {
         }
         */
 
-        //Read the movies.csv and parse the csv in a list of objects
+        //Read the movies.csv
+        String csvFilename = "src/main/input/movies.csv";
+        CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
+
+        //parse the csv in a list of objects -->allMovies
         ColumnPositionMappingStrategy strat = new ColumnPositionMappingStrategy();
         strat.setType(Movie.class);
         String[] columns = new String[] {"movieId", "title", "genres"}; // the fields to bind do in your JavaBean
@@ -51,11 +56,7 @@ public class Recommender {
 
         CsvToBean csv = new CsvToBean();
 
-        String csvFilename = "src/main/input/movies.csv";
-        CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
-
-
-        List list = csv.parse(strat, csvReader);
+        List allMovies = csv.parse(strat, csvReader);
 
         /* Print all the movieId that we parse of the csv
         for (Object object : list) {
@@ -64,11 +65,11 @@ public class Recommender {
         }
         */
 
-        //Add in a list all the movies that we recommended
+        //Add in a list all the movies that we recommended -->recommendedList
         List<Movie> recommendedList = new ArrayList<Movie>();
         for (RecommendedItem recommendedItem : recommendations) {
             String idRecommended = Long.toString(recommendedItem.getItemID());
-            for (Object object : list) {
+            for (Object object : allMovies) {
                 Movie movie = (Movie) object;
                 if(idRecommended.equals(movie.getMovieId())){
                     recommendedList.add(movie);
