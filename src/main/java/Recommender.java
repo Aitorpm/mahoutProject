@@ -90,6 +90,11 @@ el id de l'usuari ha de ser una variable per tant:
 cargar els fitxers en el program principial i ficar el predictor amb una funcio que li pasem
 el usuari per parametra
 
+MENU:
+1. Predecir peliculas a traves de un nombre
+2. Puntuar una pelicula
+3. Mostrar las peliculas que ha valorado un persona
+
 Informacio treta de:
 https://mahout.apache.org/users/recommender/userbased-5-minutes.html
 http://viralpatel.net/blogs/java-read-write-csv-file/   seccio--> 3. Mapping CSV with Java beans
