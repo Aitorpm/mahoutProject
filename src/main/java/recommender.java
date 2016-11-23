@@ -63,16 +63,23 @@ public class Recommender {
 
         //Add in a list all the movies that we recommended -->recommendedList
         List<Movie> recommendedList = new ArrayList<Movie>();
+        System.out.println("_____________________________________________________");
+        System.out.println("          Listado de películas recomendadas          ");
+        System.out.println("-----------------------------------------------------");
+        System.out.println("-----------------------------------------------------");
+        System.out.println("                                                     ");
         for (RecommendedItem recommendedItem : recommendations) {
             String idRecommended = Long.toString(recommendedItem.getItemID());
             for (Object object : allMovies) {
                 Movie movie = (Movie) object;
                 if(idRecommended.equals(movie.getMovieId())){
                     recommendedList.add(movie);
-                    System.out.println(movie.getTitle());
+                    System.out.println(" - "+movie.getTitle()+"  ");
                 }
             }
         }
+        System.out.println("                                                     ");
+        System.out.println("-----------------------------------------------------");
     }
 }
 
