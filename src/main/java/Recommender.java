@@ -6,6 +6,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 
+import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
@@ -18,21 +19,108 @@ import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Logger;
 
-public class Recommender {
+
+
+public class Recommender extends EvaluateRecommender {
+
     public static void main(String[] args) throws Exception {
+
+        int option = 0;
+        Scanner scanner = new Scanner(System.in);
+        Scanner wait = new Scanner(System.in);
+        while (option != 5) {
+
+            System.out.println("\n");
+            System.out.println("MENU");
+            System.out.println("\n");
+            System.out.println("1- Predecir peliculas a traves de un nombre");
+            System.out.println("2- Puntuar una pelicula");
+            System.out.println("3- Mostrar las peliculas que ha valorado un persona");
+            System.out.println("4- Evaluar recomendador");
+            System.out.println("5- Salir");
+            System.out.println("\n");
+            System.out.println("Elije una de las opciones: ");
+
+
+            try {
+                option = scanner.nextInt();
+
+            } catch (InputMismatchException e) {
+                option = 10;
+            }
+
+            switch (option) {
+
+                case 1:
+                    System.out.println("Escribe el nombre del usuario:");
+                    recommender(scanner.next());
+                    System.out.println("\n");
+                    System.out.print("Press any key to continue . . . ");
+                    System.out.println("\n");
+                    wait.nextLine();
+                    break;
+
+                case 3:
+                    System.out.println("Escribe el nombre del usuario:");
+                    getRates(scanner.next());
+                    System.out.println("\n");
+                    System.out.print("Press any key to continue . . . ");
+                    System.out.println("\n");
+                    wait.nextLine();
+                    break;
+
+                case 4:
+                    evaluateRecommender();
+                    System.out.println("\n");
+                    System.out.print("Press any key to continue . . . ");
+                    System.out.println("\n");
+                    wait.nextLine();
+                    break;
+            }
+        }
+    }
+
+    static void recommender(String user) throws IOException, TasteException {
+        int id=-1;
+
+        //Read the movies.csv
+        String csvFilename1 = "src/main/input/nombres.csv";
+        CSVReader csvReader1 = new CSVReader(new FileReader(csvFilename1));
+
+        //parse the csv in a list of objects -->allMovies
+        ColumnPositionMappingStrategy strat1 = new ColumnPositionMappingStrategy();
+        strat1.setType(User.class);
+        String[] columns1 = new String[]{"id", "name"}; // the fields to bind do in your JavaBean
+        strat1.setColumnMapping(columns1);
+
+        CsvToBean csv1 = new CsvToBean();
+
+        List allUsers = csv1.parse(strat1, csvReader1);
+        for (Object object : allUsers) {
+            User user1= (User) object;
+            if(user1.getName().equals(user)){
+                id = user1.getId();
+            }
+        }
+
         DataModel model = new FileDataModel(new File("src/main/input/dataset.csv")); //load data from file
         UserSimilarity similarity = new PearsonCorrelationSimilarity(model); //correlation coeficient
-        UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, model); //0.1-->threshold
+        UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.9, similarity, model); //0.9-->threshold
 
         UserBasedRecommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
 
         //recommendations--> list of RecommendedItem objects with that obtain: movie_id and rate
         //first param--> userid and second param --> number of movies recommended
-        List<RecommendedItem> recommendations = recommender.recommend(2, 10);
+        List<RecommendedItem> recommendations = recommender.recommend(id, 10);
 
         /* Print the id of the items that we recommended
         for (RecommendedItem recommendedItem : recommendations) {
@@ -47,7 +135,7 @@ public class Recommender {
         //parse the csv in a list of objects -->allMovies
         ColumnPositionMappingStrategy strat = new ColumnPositionMappingStrategy();
         strat.setType(Movie.class);
-        String[] columns = new String[] {"movieId", "title", "genres"}; // the fields to bind do in your JavaBean
+        String[] columns = new String[]{"movieId", "title", "genres"}; // the fields to bind do in your JavaBean
         strat.setColumnMapping(columns);
 
         CsvToBean csv = new CsvToBean();
@@ -55,7 +143,7 @@ public class Recommender {
         List allMovies = csv.parse(strat, csvReader);
 
         /* Print all the movieId that we parse of the csv
-        for (Object object : list) {
+        for (Object object : allMovies) {
             Movie movie = (Movie) object;
             System.out.println(movie.getMovieId());
         }
@@ -68,32 +156,107 @@ public class Recommender {
         System.out.println("-----------------------------------------------------");
         System.out.println("-----------------------------------------------------");
         System.out.println("                                                     ");
+        System.out.println("                                                     ");
         for (RecommendedItem recommendedItem : recommendations) {
             String idRecommended = Long.toString(recommendedItem.getItemID());
             for (Object object : allMovies) {
                 Movie movie = (Movie) object;
-                if(idRecommended.equals(movie.getMovieId())){
+                if (idRecommended.equals(movie.getMovieId())) {
                     recommendedList.add(movie);
-                    System.out.println(" - "+movie.getTitle()+"  ");
+                    System.out.println(" - " + movie.getTitle() + "  " + "GENRES: " + movie.getGenres());
                 }
             }
         }
         System.out.println("                                                     ");
         System.out.println("-----------------------------------------------------");
     }
+
+    static void evaluateRecommender() throws IOException, TasteException {
+        evaluate();
+    }
+
+    static void getRates(String user) throws FileNotFoundException {
+        int id=-1;
+
+        //Read the movies.csv
+        String csvFilename1 = "src/main/input/nombres.csv";
+        CSVReader csvReader1 = new CSVReader(new FileReader(csvFilename1));
+
+        //parse the csv in a list of objects -->allMovies
+        ColumnPositionMappingStrategy strat1 = new ColumnPositionMappingStrategy();
+        strat1.setType(User.class);
+        String[] columns1 = new String[]{"id", "name"}; // the fields to bind do in your JavaBean
+        strat1.setColumnMapping(columns1);
+
+        CsvToBean csv1 = new CsvToBean();
+
+        List allUsers = csv1.parse(strat1, csvReader1);
+        for (Object object : allUsers) {
+            User user1= (User) object;
+            if(user1.getName().equals(user)){
+                id = user1.getId();
+            }
+        }
+
+
+        //Read the dataset.csv
+        String csvFilename = "src/main/input/dataset.csv";
+        CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
+
+        //parse the csv in a list of objects -->allRates
+        ColumnPositionMappingStrategy strat = new ColumnPositionMappingStrategy();
+        strat.setType(Rate.class);
+        String[] columns = new String[]{"user", "movie", "rate"}; // the fields to bind do in your JavaBean
+        strat.setColumnMapping(columns);
+
+        CsvToBean csv = new CsvToBean();
+
+        List allRates = csv.parse(strat, csvReader);
+
+        List<Rate> myRates = new ArrayList<Rate>();
+        for (Object object : allRates) {
+            Rate rate1 = (Rate) object;
+            if(rate1.getUser() == id){
+                myRates.add(rate1);
+            }
+        }
+
+        //Read the movies.csv
+        String csvFilename2 = "src/main/input/movies.csv";
+        CSVReader csvReader2 = new CSVReader(new FileReader(csvFilename2));
+
+        //parse the csv in a list of objects -->allMovies
+        ColumnPositionMappingStrategy strat2 = new ColumnPositionMappingStrategy();
+        strat2.setType(Movie.class);
+        String[] columns2 = new String[]{"movieId", "title", "genres"}; // the fields to bind do in your JavaBean
+        strat2.setColumnMapping(columns2);
+
+        CsvToBean csv2 = new CsvToBean();
+
+        List allMovies = csv2.parse(strat2, csvReader2);
+
+        int cont =0;
+        for (Object object : myRates) {
+            Rate rate1 = (Rate) object;
+            for (Object object2 : allMovies) {
+                Movie movie = (Movie) object2;
+                int idEquals = Integer.parseInt(movie.getMovieId());
+                if(rate1.getMovie() == idEquals && cont<10){
+                    System.out.println("MOVIE:"+ movie.getTitle() + "         RATE: " + rate1.getRate());
+                    cont++;
+                }
+            }
+        }
+
+    }
 }
+
+
 
 /*Coses per fer:
 Quin threshold hem de posar
 Quantes pelicules com a molt volem recomanar
-el id de l'usuari ha de ser una variable per tant:
-cargar els fitxers en el program principial i ficar el predictor amb una funcio que li pasem
-el usuari per parametra
 
-MENU:
-1. Predecir peliculas a traves de un nombre
-2. Puntuar una pelicula
-3. Mostrar las peliculas que ha valorado un persona
 
 Informacio treta de:
 https://mahout.apache.org/users/recommender/userbased-5-minutes.html

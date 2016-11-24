@@ -12,6 +12,7 @@ import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by aitor on 17/11/16.
@@ -19,7 +20,7 @@ import java.io.File;
 
 
 public class EvaluateRecommender {
-    public static void main(String[] args) throws Exception {
+    public static void evaluate() throws IOException, TasteException {
         class MyRecommenderBuilder implements RecommenderBuilder{
             public Recommender buildRecommender(DataModel dataModel) throws TasteException {
                 UserSimilarity similarity = new PearsonCorrelationSimilarity(dataModel);
@@ -32,6 +33,6 @@ public class EvaluateRecommender {
         RecommenderEvaluator evaluator = new AverageAbsoluteDifferenceRecommenderEvaluator();
         RecommenderBuilder builder = new MyRecommenderBuilder();
         double result = evaluator.evaluate(builder, null, model, 0.9, 1.0); //trainingset-->90% and a testset-->10%
-        System.out.println(result);
+        System.out.println("RESULT: " + result);
     }
 }
