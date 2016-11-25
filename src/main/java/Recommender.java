@@ -36,6 +36,8 @@ public class Recommender extends EvaluateRecommender {
         Scanner scanner = new Scanner(System.in);
         Scanner wait = new Scanner(System.in);
         while (option != 5) {
+            System.out.println("");
+            System.out.println("");
             System.out.println("========================================================================");
             System.out.println("|                               MENU                                   |");
             System.out.println("|======================================================================|");
@@ -53,7 +55,7 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("|----------------------------------------------------------------------|");
             System.out.println("|                     Elije una de las opciones:                       |");
             System.out.println("========================================================================");
-
+            System.out.println("");
 
             try {
                 option = scanner.nextInt();
@@ -164,7 +166,6 @@ public class Recommender extends EvaluateRecommender {
                     System.out.println("||· Nº: "+ num);
                     System.out.println("||· MOVIE: "+ movie.getTitle());
                     System.out.println("||· GENERES: "+ movie.getGenres());
-
                     //System.out.println(" - " + movie.getTitle() + "  " + "GENERES: " + movie.getGenres());
                     num++;
                 }
