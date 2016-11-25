@@ -30,12 +30,21 @@ import java.util.Scanner;
 
 public class Recommender extends EvaluateRecommender {
 
+
     public static void main(String[] args) throws Exception {
 
         int option = 0;
         Scanner scanner = new Scanner(System.in);
         Scanner wait = new Scanner(System.in);
         while (option != 5) {
+            //System.out.print("\f");
+            //System.out.print("\033[H\033[2J");
+            //System.out.flush();
+            int lineas = 20;
+            for (int i=0; i < lineas; i++) {
+                System.out.println();
+            }
+
             System.out.println("");
             System.out.println("");
             System.out.println("========================================================================");
@@ -56,6 +65,10 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("|                     Elije una de las opciones:                       |");
             System.out.println("========================================================================");
             System.out.println("");
+            int bot = 10;
+            for (int i=0; i < bot; i++) {
+                System.out.println();
+            }
 
             try {
                 option = scanner.nextInt();
@@ -67,6 +80,9 @@ public class Recommender extends EvaluateRecommender {
             switch (option) {
 
                 case 1:
+                    //System.out.print("\f");
+                    //System.out.print("\033[H\033[2J");
+                    //System.out.flush();
                     System.out.println("Escribe el nombre del usuario:");
                     recommender(scanner.next());
                     System.out.print("\nPress any key to continue . . . \n");
@@ -74,6 +90,9 @@ public class Recommender extends EvaluateRecommender {
                     break;
 
                 case 3:
+                    //System.out.print("\f");
+                    //System.out.print("\033[H\033[2J");
+                    //System.out.flush();
                     System.out.println("Escribe el nombre del usuario:");
                     getRates(scanner.next());
                     System.out.print("\nPress any key to continue . . . \n");
@@ -149,8 +168,17 @@ public class Recommender extends EvaluateRecommender {
         }
         */
 
+        //System.out.print("\f");
+        //System.out.print("\033[H\033[2J");
+        //System.out.flush();
+
         //Add in a list all the movies that we recommended -->recommendedList
         List<Movie> recommendedList = new ArrayList<Movie>();
+        int lineas = 30;
+        for (int i=0; i < lineas; i++) {
+            System.out.println();
+        }
+
         System.out.println("");
         System.out.println("");
         System.out.println("========================================================================");
@@ -238,10 +266,17 @@ public class Recommender extends EvaluateRecommender {
         CsvToBean csv2 = new CsvToBean();
 
         List allMovies = csv2.parse(strat2, csvReader2);
+        int lineas = 30;
+        for (int i=0; i < lineas; i++) {
+            System.out.println();
+        }
+        //System.out.print("\f");
+        //System.out.print("\033[H\033[2J");
+        //System.out.flush();
         System.out.println("");
         System.out.println("");
         System.out.println("========================================================================");
-        System.out.println("                             LIST OF RATED FILMS                        ");
+        System.out.println("                          LIST OF RATED FILMS                           ");
         int cont = 0;
         int num =1;
         for (Object object : myRates) {
