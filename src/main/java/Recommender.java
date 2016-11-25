@@ -36,14 +36,24 @@ public class Recommender extends EvaluateRecommender {
         Scanner scanner = new Scanner(System.in);
         Scanner wait = new Scanner(System.in);
         while (option != 5) {
-            System.out.println("\nMENU\n");
-            System.out.println("1- Predecir peliculas a traves de un nombre");
-            System.out.println("2- Puntuar una pelicula");
-            System.out.println("3- Mostrar las peliculas que ha valorado un persona");
-            System.out.println("4- Evaluar recomendador");
-            System.out.println("5- Salir");
-            System.out.println("\n");
-            System.out.println("Elije una de las opciones: ");
+            System.out.println("==================================================================");
+            System.out.println("|                            MENU                                |");
+            System.out.println("|================================================================|");
+            System.out.println("|                                                                |");
+            System.out.println("|      1- Predecir peliculas a traves de un nombre               |");
+            System.out.println("|                                                                |");
+            System.out.println("|      2- Puntuar una pelicula                                   |");
+            System.out.println("|                                                                |");
+            System.out.println("|      3- Mostrar las peliculas que ha valorado un persona       |");
+            System.out.println("|                                                                |");
+            System.out.println("|      4- Evaluar recomendador                                   |");
+            System.out.println("|                                                                |");
+            System.out.println("|      5- Salir                                                  |");
+            System.out.println("|                                                                |");
+            System.out.println("|----------------------------------------------------------------|");
+            System.out.println("|                  Elije una de las opciones:                    |");
+            System.out.println("==================================================================");
+
 
             try {
                 option = scanner.nextInt();
