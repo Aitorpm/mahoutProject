@@ -223,7 +223,7 @@ public class Recommender extends EvaluateRecommender {
 
         List allMovies = csv2.parse(strat2, csvReader2);
         System.out.println("========================================================================");
-        System.out.println("                        LIST OF THE RECOMMENDER FILMS                      ");
+        System.out.println("                          LIST OF RECOMMENDER FILMS                      ");
         //System.out.println("===========================================================================");
         int cont = 0;
         int num =1;
