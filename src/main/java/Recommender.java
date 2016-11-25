@@ -26,8 +26,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Logger;
-
 
 
 public class Recommender extends EvaluateRecommender {
@@ -38,10 +36,7 @@ public class Recommender extends EvaluateRecommender {
         Scanner scanner = new Scanner(System.in);
         Scanner wait = new Scanner(System.in);
         while (option != 5) {
-
-            System.out.println("\n");
-            System.out.println("MENU");
-            System.out.println("\n");
+            System.out.println("\nMENU\n");
             System.out.println("1- Predecir peliculas a traves de un nombre");
             System.out.println("2- Puntuar una pelicula");
             System.out.println("3- Mostrar las peliculas que ha valorado un persona");
@@ -49,7 +44,6 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("5- Salir");
             System.out.println("\n");
             System.out.println("Elije una de las opciones: ");
-
 
             try {
                 option = scanner.nextInt();
@@ -63,26 +57,20 @@ public class Recommender extends EvaluateRecommender {
                 case 1:
                     System.out.println("Escribe el nombre del usuario:");
                     recommender(scanner.next());
-                    System.out.println("\n");
-                    System.out.print("Press any key to continue . . . ");
-                    System.out.println("\n");
+                    System.out.print("\nPress any key to continue . . . \n");
                     wait.nextLine();
                     break;
 
                 case 3:
                     System.out.println("Escribe el nombre del usuario:");
                     getRates(scanner.next());
-                    System.out.println("\n");
-                    System.out.print("Press any key to continue . . . ");
-                    System.out.println("\n");
+                    System.out.print("\nPress any key to continue . . . \n");
                     wait.nextLine();
                     break;
 
                 case 4:
                     evaluateRecommender();
-                    System.out.println("\n");
-                    System.out.print("Press any key to continue . . . ");
-                    System.out.println("\n");
+                    System.out.print("\nPress any key to continue . . . \n");
                     wait.nextLine();
                     break;
             }
@@ -90,7 +78,7 @@ public class Recommender extends EvaluateRecommender {
     }
 
     static void recommender(String user) throws IOException, TasteException {
-        int id=-1;
+        int id = -1;
 
         //Read the movies.csv
         String csvFilename1 = "src/main/input/nombres.csv";
@@ -106,8 +94,8 @@ public class Recommender extends EvaluateRecommender {
 
         List allUsers = csv1.parse(strat1, csvReader1);
         for (Object object : allUsers) {
-            User user1= (User) object;
-            if(user1.getName().equals(user)){
+            User user1 = (User) object;
+            if (user1.getName().equals(user)) {
                 id = user1.getId();
             }
         }
@@ -176,7 +164,7 @@ public class Recommender extends EvaluateRecommender {
     }
 
     static void getRates(String user) throws FileNotFoundException {
-        int id=-1;
+        int id = -1;
 
         //Read the movies.csv
         String csvFilename1 = "src/main/input/nombres.csv";
@@ -192,8 +180,8 @@ public class Recommender extends EvaluateRecommender {
 
         List allUsers = csv1.parse(strat1, csvReader1);
         for (Object object : allUsers) {
-            User user1= (User) object;
-            if(user1.getName().equals(user)){
+            User user1 = (User) object;
+            if (user1.getName().equals(user)) {
                 id = user1.getId();
             }
         }
@@ -216,7 +204,7 @@ public class Recommender extends EvaluateRecommender {
         List<Rate> myRates = new ArrayList<Rate>();
         for (Object object : allRates) {
             Rate rate1 = (Rate) object;
-            if(rate1.getUser() == id){
+            if (rate1.getUser() == id) {
                 myRates.add(rate1);
             }
         }
@@ -234,15 +222,17 @@ public class Recommender extends EvaluateRecommender {
         CsvToBean csv2 = new CsvToBean();
 
         List allMovies = csv2.parse(strat2, csvReader2);
-
-        int cont =0;
+        System.out.println("\n_____________________________________________________");
+        System.out.println("       Listado de las películas mejor valoradas      ");
+        System.out.println("-----------------------------------------------------\n");
+        int cont = 0;
         for (Object object : myRates) {
             Rate rate1 = (Rate) object;
             for (Object object2 : allMovies) {
                 Movie movie = (Movie) object2;
                 int idEquals = Integer.parseInt(movie.getMovieId());
-                if(rate1.getMovie() == idEquals && cont<10){
-                    System.out.println("MOVIE:"+ movie.getTitle() + "         RATE: " + rate1.getRate());
+                if (rate1.getMovie() == idEquals && cont < 10) {
+                    System.out.println("MOVIE:" + movie.getTitle() + "         RATE: " + rate1.getRate());
                     cont++;
                 }
             }
