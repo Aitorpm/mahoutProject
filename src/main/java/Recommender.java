@@ -222,21 +222,30 @@ public class Recommender extends EvaluateRecommender {
         CsvToBean csv2 = new CsvToBean();
 
         List allMovies = csv2.parse(strat2, csvReader2);
-        System.out.println("\n_____________________________________________________");
-        System.out.println("       Listado de las películas mejor valoradas      ");
-        System.out.println("-----------------------------------------------------\n");
+        System.out.println("========================================================================");
+        System.out.println("                        LIST OF THE RECOMMENDER FILMS                      ");
+        //System.out.println("===========================================================================");
         int cont = 0;
+        int num =1;
         for (Object object : myRates) {
             Rate rate1 = (Rate) object;
             for (Object object2 : allMovies) {
                 Movie movie = (Movie) object2;
                 int idEquals = Integer.parseInt(movie.getMovieId());
                 if (rate1.getMovie() == idEquals && cont < 10) {
-                    System.out.println("MOVIE:" + movie.getTitle() + "         RATE: " + rate1.getRate());
+                    //System.out.println(" ");
+                    System.out.println("========================================================================");
+                    System.out.println("||· Nº: "+ num);
+                    System.out.println("||· MOVIE: "+ movie.getTitle());
+                    System.out.println("||· RATE: "+ rate1.getRate());
+                    //System.out.println("===========================================================================");
+                    //System.out.println("MOVIE "+ num +": " + movie.getTitle() + " RATE: " + rate1.getRate());
                     cont++;
+                    num++;
                 }
             }
         }
+        System.out.println("========================================================================");
 
     }
 }
