@@ -40,11 +40,11 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("|                               MENU                                   |");
             System.out.println("|======================================================================|");
             System.out.println("|                                                                      |");
-            System.out.println("|         1- Predecir peliculas a traves de un nombre                  |");
+            System.out.println("|         1- Predecir películas a través de un nombre                  |");
             System.out.println("|                                                                      |");
-            System.out.println("|         2- Puntuar una pelicula                                      |");
+            System.out.println("|         2- Puntuar una película                                      |");
             System.out.println("|                                                                      |");
-            System.out.println("|         3- Mostrar las peliculas que ha valorado un persona          |");
+            System.out.println("|         3- Mostrar las películas que ha valorado un usuario          |");
             System.out.println("|                                                                      |");
             System.out.println("|         4- Evaluar recomendador                                      |");
             System.out.println("|                                                                      |");
@@ -149,24 +149,29 @@ public class Recommender extends EvaluateRecommender {
 
         //Add in a list all the movies that we recommended -->recommendedList
         List<Movie> recommendedList = new ArrayList<Movie>();
-        System.out.println("_____________________________________________________");
-        System.out.println("          Listado de películas recomendadas          ");
-        System.out.println("-----------------------------------------------------");
-        System.out.println("-----------------------------------------------------");
-        System.out.println("                                                     ");
-        System.out.println("                                                     ");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("========================================================================");
+        System.out.println("                       LIST OF RECOMMENDED FILMS                        ");
+        int num =1;
         for (RecommendedItem recommendedItem : recommendations) {
             String idRecommended = Long.toString(recommendedItem.getItemID());
             for (Object object : allMovies) {
                 Movie movie = (Movie) object;
                 if (idRecommended.equals(movie.getMovieId())) {
                     recommendedList.add(movie);
-                    System.out.println(" - " + movie.getTitle() + "  " + "GENRES: " + movie.getGenres());
+                    System.out.println("========================================================================");
+                    System.out.println("||· Nº: "+ num);
+                    System.out.println("||· MOVIE: "+ movie.getTitle());
+                    System.out.println("||· GENERES: "+ movie.getGenres());
+
+                    //System.out.println(" - " + movie.getTitle() + "  " + "GENERES: " + movie.getGenres());
+                    num++;
                 }
             }
         }
-        System.out.println("                                                     ");
-        System.out.println("-----------------------------------------------------");
+        System.out.println("========================================================================");
+        System.out.println("");
     }
 
     static void evaluateRecommender() throws IOException, TasteException {
@@ -232,9 +237,10 @@ public class Recommender extends EvaluateRecommender {
         CsvToBean csv2 = new CsvToBean();
 
         List allMovies = csv2.parse(strat2, csvReader2);
+        System.out.println("");
+        System.out.println("");
         System.out.println("========================================================================");
-        System.out.println("                          LIST OF RECOMMENDER FILMS                      ");
-        //System.out.println("===========================================================================");
+        System.out.println("                             LIST OF RATED FILMS                        ");
         int cont = 0;
         int num =1;
         for (Object object : myRates) {
@@ -256,6 +262,7 @@ public class Recommender extends EvaluateRecommender {
             }
         }
         System.out.println("========================================================================");
+        System.out.println("");
 
     }
 }
