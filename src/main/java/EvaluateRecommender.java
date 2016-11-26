@@ -24,7 +24,7 @@ public class EvaluateRecommender {
         class MyRecommenderBuilder implements RecommenderBuilder{
             public Recommender buildRecommender(DataModel dataModel) throws TasteException {
                 UserSimilarity similarity = new PearsonCorrelationSimilarity(dataModel);
-                UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, dataModel);
+                UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.9, similarity, dataModel);
                 return new GenericUserBasedRecommender(dataModel, neighborhood, similarity);
             }
         }
@@ -33,5 +33,12 @@ public class EvaluateRecommender {
         RecommenderEvaluator evaluator = new AverageAbsoluteDifferenceRecommenderEvaluator();
         RecommenderBuilder builder = new MyRecommenderBuilder();
         double result = evaluator.evaluate(builder, null, model, 0.9, 1.0); //trainingset-->90% and a testset-->10%
+        System.out.println();
+        System.out.println();
+        System.out.println("===================================================");
+        System.out.println("                                                   ");
+        System.out.println("  * Resultado del evaluador: "+result+" *");
+        System.out.println("                                            ");
+        System.out.println("===================================================");
     }
 }

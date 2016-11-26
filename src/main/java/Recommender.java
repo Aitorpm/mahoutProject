@@ -301,7 +301,6 @@ public class Recommender extends EvaluateRecommender {
                         System.out.println("||· MOVIE: " + movie.getTitle());
                         System.out.println("||· GENERES: " + movie.getGenres());
                         System.out.println("||· RATE: " + rate1.getRate());
-                        //System.out.println("===========================================================================");
                         //System.out.println("MOVIE "+ num +": " + movie.getTitle() + " RATE: " + rate1.getRate());
                         cont++;
                         num++;
