@@ -27,6 +27,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Thread.*;
+
 
 public class Recommender extends EvaluateRecommender {
 
@@ -39,15 +41,15 @@ public class Recommender extends EvaluateRecommender {
         System.out.println("");
         System.out.println("Loading:");
         System.out.println("");
-        Thread.sleep(500);
+        sleep(500);
         System.out.print("[  * ");
-        Thread.sleep(2000);
+        sleep(1500);
         System.out.print("* * * ");
-        Thread.sleep(500);
+        sleep(400);
         System.out.print("* ");
-        Thread.sleep(2000);
+        sleep(1600);
         System.out.print("* * * * *  ]");
-        Thread.sleep(1000);
+        sleep(700);
         Scanner scanner = new Scanner(System.in);
         Scanner wait = new Scanner(System.in);
         while (option != 5) {
@@ -108,6 +110,21 @@ public class Recommender extends EvaluateRecommender {
                     wait.nextLine();
                     break;
 
+                case 2:
+                    //System.out.print("\f");
+                    //System.out.print("\033[H\033[2J");
+                    //System.out.flush();
+                    System.out.println("");
+                    System.out.print("* Enter the username: ");
+                    getRates(scanner.next());
+                    System.out.println("");
+                    System.out.print("* Enter the number of rates that you want obtain: ");
+                    //getNum(scanner.next());
+                    System.out.println("");
+                    System.out.print("\nPress any key to continue . . . \n");
+                    wait.nextLine();
+                    break;
+
                 case 3:
                     //System.out.print("\f");
                     //System.out.print("\033[H\033[2J");
@@ -115,6 +132,9 @@ public class Recommender extends EvaluateRecommender {
                     System.out.println("");
                     System.out.print("* Enter the username: ");
                     getRates(scanner.next());
+                    System.out.println("");
+                    System.out.print("* Enter the number of rates that you want obtain: ");
+                    //getNum(scanner.next());
                     System.out.println("");
                     System.out.print("\nPress any key to continue . . . \n");
                     wait.nextLine();
@@ -158,7 +178,7 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
             System.out.println("THIS USER DON'T EXIST!!");
             System.out.println("");
-            Thread.sleep(1000);
+            sleep(1000);
             System.out.println("TRY IT NOW!!");
         }
         else {
@@ -239,8 +259,9 @@ public class Recommender extends EvaluateRecommender {
         evaluate();
     }
 
-    static void getRates(String user) throws FileNotFoundException {
+    static void getRates(String user) throws FileNotFoundException, InterruptedException {
         int id = -1;
+
 
         //Read the movies.csv
         String csvFilename1 = "src/main/input/nombres.csv";
@@ -262,7 +283,11 @@ public class Recommender extends EvaluateRecommender {
             }
         }
         if(id==-1){
-            System.out.println("                       THIS USER DON'T EXIST                        ");
+            System.out.println("");
+            System.out.println("THIS USER DON'T EXIST!!");
+            System.out.println("");
+            sleep(1000);
+            System.out.println("TRY IT NOW!!");
         }
         else {
 
