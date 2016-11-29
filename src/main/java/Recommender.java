@@ -279,9 +279,9 @@ public class Recommender extends EvaluateRecommender {
         if(id==-1){
             System.out.println("");
             System.out.println("==================================");
-            System.out.println("|                                |");
-            System.out.println("|    THIS USER DON'T EXIST...    |");
-            System.out.println("|                                |");
+            System.out.println("");
+            System.out.println("* THE USER ["+user+"] DON'T EXIST...");
+            System.out.println("");
             System.out.println("==================================");
             sleep(1000);
             System.out.println("|                                |");
