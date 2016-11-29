@@ -213,7 +213,7 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
             System.out.println("");
             System.out.println("========================================================================");
-            System.out.println("                       LIST OF RECOMMENDED FILMS                        ");
+            System.out.println("*                      LIST OF RECOMMENDED FILMS                       *");
             int num = 1;
             for (RecommendedItem recommendedItem : recommendations) {
                 String idRecommended = Long.toString(recommendedItem.getItemID());
@@ -311,7 +311,7 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
             System.out.println("");
             System.out.println("========================================================================");
-            System.out.println("                          LIST OF RATED FILMS                           ");
+            System.out.println("*                         LIST OF RATED FILMS                          *");
             int cont = 0;
             int num = 1;
             for (Object object : myRates) {
