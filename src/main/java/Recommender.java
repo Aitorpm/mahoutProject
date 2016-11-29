@@ -170,10 +170,17 @@ public class Recommender extends EvaluateRecommender {
         }
         if(id==-1){
             System.out.println("");
-            System.out.println("THIS USER DON'T EXIST!!");
+            System.out.println("==================================");
             System.out.println("");
+            System.out.println("* THE USER ["+user+"] DON'T EXIST...");
+            System.out.println("");
+            System.out.println("==================================");
             sleep(1000);
-            System.out.println("TRY IT NOW!!");
+            System.out.println("|                                |");
+            System.out.println("|         TRY IT NOW!!           |");
+            System.out.println("|                                |");
+            System.out.println("==================================");
+            System.out.println("");
         }
         else {
             DataModel model = new FileDataModel(new File("src/main/input/dataset.csv")); //load data from file
