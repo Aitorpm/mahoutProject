@@ -130,9 +130,6 @@ public class Recommender extends EvaluateRecommender {
                     System.out.print("* Enter the username: ");
                     getRates(scanner.next());
                     System.out.println("");
-                    System.out.print("* Enter the number of rates that you want obtain: ");
-                    //getNum(scanner.next());
-                    System.out.println("");
                     System.out.print("\nPress any key to continue . . . \n");
                     wait.nextLine();
                     break;
