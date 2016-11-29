@@ -278,10 +278,17 @@ public class Recommender extends EvaluateRecommender {
         }
         if(id==-1){
             System.out.println("");
-            System.out.println("THIS USER DON'T EXIST!!");
-            System.out.println("");
+            System.out.println("==================================");
+            System.out.println("|                                |");
+            System.out.println("|    THIS USER DON'T EXIST...    |");
+            System.out.println("|                                |");
+            System.out.println("==================================");
             sleep(1000);
-            System.out.println("TRY IT NOW!!");
+            System.out.println("|                                |");
+            System.out.println("|         TRY IT NOW!!           |");
+            System.out.println("|                                |");
+            System.out.println("==================================");
+            System.out.println("");
         }
         else {
 
@@ -338,7 +345,7 @@ public class Recommender extends EvaluateRecommender {
                 for (Object object2 : allMovies) {
                     Movie movie = (Movie) object2;
                     int idEquals = Integer.parseInt(movie.getMovieId());
-                    if (rate1.getMovie() == idEquals && cont < 10) {
+                    if (rate1.getMovie() == idEquals && cont < 8) {
                         //System.out.println(" ");
                         System.out.println("========================================================================");
                         System.out.println("||· Nº: " + num);
