@@ -34,6 +34,20 @@ public class Recommender extends EvaluateRecommender {
     public static void main(String[] args) throws Exception {
 
         int option = 0;
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("Loading:");
+        System.out.println("");
+        Thread.sleep(500);
+        System.out.print("[  * ");
+        Thread.sleep(2000);
+        System.out.print("* * * ");
+        Thread.sleep(500);
+        System.out.print("* ");
+        Thread.sleep(2000);
+        System.out.print("* * * * *  ]");
+        Thread.sleep(1000);
         Scanner scanner = new Scanner(System.in);
         Scanner wait = new Scanner(System.in);
         while (option != 5) {
@@ -48,28 +62,31 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
             System.out.println("");
             System.out.println("========================================================================");
-            System.out.println("|                               MENU                                   |");
-            System.out.println("|======================================================================|");
-            System.out.println("|                                                                      |");
-            System.out.println("|         1- Predecir películas a través de un nombre                  |");
-            System.out.println("|                                                                      |");
-            System.out.println("|         2- Puntuar una película                                      |");
-            System.out.println("|                                                                      |");
-            System.out.println("|         3- Mostrar las películas que ha valorado un usuario          |");
-            System.out.println("|                                                                      |");
-            System.out.println("|         4- Evaluar recomendador                                      |");
-            System.out.println("|                                                                      |");
-            System.out.println("|         5- Salir                                                     |");
-            System.out.println("|                                                                      |");
-            System.out.println("|----------------------------------------------------------------------|");
-            System.out.println("|                     Elije una de las opciones:                       |");
+            System.out.println("*                               MENU                                   *");
             System.out.println("========================================================================");
-            System.out.println("");
+            System.out.println("|                                                                      |");
+            System.out.println("|                [1] - Predict movies by user name                     |");
+            System.out.println("|                                                                      |");
+            System.out.println("|                [2] - Rate a movie                                    |");
+            System.out.println("|                                                                      |");
+            System.out.println("|                [3] - Show movies rated by a user                     |");
+            System.out.println("|                                                                      |");
+            System.out.println("|                [4] - Evaluate recommender                            |");
+            System.out.println("|                                                                      |");
+            System.out.println("|                [5] - Exit                                            |");
+            System.out.println("|                                                                      |");
+            System.out.println("========================================================================");
+            System.out.println("*                         < Choose an option >                         *");
+            System.out.println("========================================================================");
             int bot = 10;
             for (int i=0; i < bot; i++) {
                 System.out.println();
             }
-
+            System.out.println("========================================================================");
+            System.out.println("*                         < User formulary >                           *");
+            System.out.println("========================================================================");
+            System.out.println("");
+            System.out.print("* Selected option: ");
             try {
                 option = scanner.nextInt();
 
@@ -83,8 +100,10 @@ public class Recommender extends EvaluateRecommender {
                     //System.out.print("\f");
                     //System.out.print("\033[H\033[2J");
                     //System.out.flush();
-                    System.out.println("Escribe el nombre del usuario:");
+                    System.out.println("");
+                    System.out.print("* Enter the username: ");
                     recommender(scanner.next());
+                    System.out.println("");
                     System.out.print("\nPress any key to continue . . . \n");
                     wait.nextLine();
                     break;
@@ -93,8 +112,10 @@ public class Recommender extends EvaluateRecommender {
                     //System.out.print("\f");
                     //System.out.print("\033[H\033[2J");
                     //System.out.flush();
-                    System.out.println("Escribe el nombre del usuario:");
+                    System.out.println("");
+                    System.out.print("* Enter the username: ");
                     getRates(scanner.next());
+                    System.out.println("");
                     System.out.print("\nPress any key to continue . . . \n");
                     wait.nextLine();
                     break;
@@ -106,12 +127,12 @@ public class Recommender extends EvaluateRecommender {
                     break;
 
                 case 5:
-                    System.out.print("\n  SEE YOU SOON...!  \n");
+                    System.out.print("\n...SEE YOU SOON...!  \n");
             }
         }
     }
 
-    static void recommender(String user) throws IOException, TasteException {
+    static void recommender(String user) throws IOException, TasteException, InterruptedException {
         int id = -1;
 
         //Read the movies.csv
@@ -134,7 +155,11 @@ public class Recommender extends EvaluateRecommender {
             }
         }
         if(id==-1){
-            System.out.println("                       THIS USER DON'T EXIST                        ");
+            System.out.println("");
+            System.out.println("THIS USER DON'T EXIST!!");
+            System.out.println("");
+            Thread.sleep(1000);
+            System.out.println("TRY IT NOW!!");
         }
         else {
             DataModel model = new FileDataModel(new File("src/main/input/dataset.csv")); //load data from file
