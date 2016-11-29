@@ -10,9 +10,11 @@ import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
 import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.similarity.UserSimilarity;
+import java.math.BigDecimal;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.RoundingMode;
 
 /**
  * Created by aitor on 17/11/16.
@@ -33,12 +35,20 @@ public class EvaluateRecommender {
         RecommenderEvaluator evaluator = new AverageAbsoluteDifferenceRecommenderEvaluator();
         RecommenderBuilder builder = new MyRecommenderBuilder();
         double result = evaluator.evaluate(builder, null, model, 0.9, 1.0); //trainingset-->90% and a testset-->10%
+        //double resultado = Math.round(result);
+        double resultado = result*100;
+        BigDecimal big = new BigDecimal(resultado);
+        big = big.setScale(2, RoundingMode.HALF_UP);
         System.out.println();
         System.out.println();
         System.out.println("===================================================");
-        System.out.println("                                                   ");
-        System.out.println("  * Resultado del evaluador: "+result+" *");
-        System.out.println("                                            ");
+        System.out.println("|                                                 |");
+        //System.out.println("  * Exactitud del Recomendador: "+Math.round(result)*100+"% *");
+        //System.out.println("  * Exactitud del Recomendador: "+Math.rint(result*100)+"% *");
+        System.out.println("|      * Exactitud del Recomendador: "+big+"%       |");
+        System.out.println("|                                                 |");
         System.out.println("===================================================");
     }
 }
+
+

@@ -36,20 +36,22 @@ public class Recommender extends EvaluateRecommender {
     public static void main(String[] args) throws Exception {
 
         int option = 0;
+        int numRate = 0;
+        String name;
         System.out.println("");
         System.out.println("");
         System.out.println("");
         System.out.println("Loading:");
         System.out.println("");
-        sleep(500);
+        sleep(300);
         System.out.print("[  * ");
-        sleep(1500);
+        sleep(1000);
         System.out.print("* * * ");
-        sleep(400);
+        sleep(300);
         System.out.print("* ");
-        sleep(1600);
+        sleep(1200);
         System.out.print("* * * * *  ]");
-        sleep(700);
+        sleep(300);
         Scanner scanner = new Scanner(System.in);
         Scanner wait = new Scanner(System.in);
         while (option != 5) {
@@ -104,8 +106,13 @@ public class Recommender extends EvaluateRecommender {
                     //System.out.flush();
                     System.out.println("");
                     System.out.print("* Enter the username: ");
-                    recommender(scanner.next());
+                    //recommender(scanner.next());
+                    name = scanner.next();
                     System.out.println("");
+                    System.out.print("* Enter the number of ratings to show: ");
+                    //getRates(scanner.next());
+                    numRate = scanner.nextInt();
+                    recommender(name, numRate);
                     System.out.print("\nPress any key to continue . . . \n");
                     wait.nextLine();
                     break;
@@ -115,8 +122,8 @@ public class Recommender extends EvaluateRecommender {
                     //System.out.print("\033[H\033[2J");
                     //System.out.flush();
                     System.out.println("");
-                    System.out.print("* Enter the username: ");
-                    getRates(scanner.next());
+                    System.out.print("* Enter the your name: ");
+                    //getRates(scanner.next());
                     System.out.println("");
                     System.out.print("\nPress any key to continue . . . \n");
                     wait.nextLine();
@@ -128,7 +135,12 @@ public class Recommender extends EvaluateRecommender {
                     //System.out.flush();
                     System.out.println("");
                     System.out.print("* Enter the username: ");
-                    getRates(scanner.next());
+                    name = scanner.next();
+                    System.out.println("");
+                    System.out.print("* Enter the number of ratings to show: ");
+                    //getRates(scanner.next());
+                    numRate = scanner.nextInt();
+                    getRates(name, numRate);
                     System.out.println("");
                     System.out.print("\nPress any key to continue . . . \n");
                     wait.nextLine();
@@ -146,8 +158,11 @@ public class Recommender extends EvaluateRecommender {
         }
     }
 
-    static void recommender(String user) throws IOException, TasteException, InterruptedException {
+    static void recommender(String user, int num) throws IOException, TasteException, InterruptedException {
         int id = -1;
+        int numRate;
+
+        numRate = num;
 
         //Read the movies.csv
         String csvFilename1 = "src/main/input/nombres.csv";
@@ -191,7 +206,7 @@ public class Recommender extends EvaluateRecommender {
 
             //recommendations--> list of RecommendedItem objects with that obtain: movie_id and rate
             //first param--> userid and second param --> number of movies recommended
-            List<RecommendedItem> recommendations = recommender.recommend(id, 10);
+            List<RecommendedItem> recommendations = recommender.recommend(id, numRate);
 
         /* Print the id of the items that we recommended
         for (RecommendedItem recommendedItem : recommendations) {
@@ -235,7 +250,7 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
             System.out.println("========================================================================");
             System.out.println("*                      LIST OF RECOMMENDED FILMS                       *");
-            int num = 1;
+            int aux = 1;
             for (RecommendedItem recommendedItem : recommendations) {
                 String idRecommended = Long.toString(recommendedItem.getItemID());
                 for (Object object : allMovies) {
@@ -243,11 +258,11 @@ public class Recommender extends EvaluateRecommender {
                     if (idRecommended.equals(movie.getMovieId())) {
                         recommendedList.add(movie);
                         System.out.println("========================================================================");
-                        System.out.println("||· Nº: " + num);
+                        System.out.println("||· Nº: " + aux);
                         System.out.println("||· MOVIE: " + movie.getTitle());
                         System.out.println("||· GENERES: " + movie.getGenres());
                         //System.out.println(" - " + movie.getTitle() + "  " + "GENERES: " + movie.getGenres());
-                        num++;
+                        aux++;
                     }
                 }
             }
@@ -260,9 +275,10 @@ public class Recommender extends EvaluateRecommender {
         evaluate();
     }
 
-    static void getRates(String user) throws FileNotFoundException, InterruptedException {
+    static void getRates(String user, int num) throws FileNotFoundException, InterruptedException {
         int id = -1;
-
+        int numRate = 0;
+        numRate = num;
 
         //Read the movies.csv
         String csvFilename1 = "src/main/input/nombres.csv";
@@ -346,22 +362,22 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("========================================================================");
             System.out.println("*                         LIST OF RATED FILMS                          *");
             int cont = 0;
-            int num = 1;
+            int aux = 1;
             for (Object object : myRates) {
                 Rate rate1 = (Rate) object;
                 for (Object object2 : allMovies) {
                     Movie movie = (Movie) object2;
                     int idEquals = Integer.parseInt(movie.getMovieId());
-                    if (rate1.getMovie() == idEquals && cont < 8) {
+                    if (rate1.getMovie() == idEquals && cont < numRate) {
                         //System.out.println(" ");
                         System.out.println("========================================================================");
-                        System.out.println("||· Nº: " + num);
+                        System.out.println("||· Nº: " + aux);
                         System.out.println("||· MOVIE: " + movie.getTitle());
                         System.out.println("||· GENERES: " + movie.getGenres());
                         System.out.println("||· RATE: " + rate1.getRate());
                         //System.out.println("MOVIE "+ num +": " + movie.getTitle() + " RATE: " + rate1.getRate());
                         cont++;
-                        num++;
+                        aux++;
                     }
                 }
             }
