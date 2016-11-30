@@ -249,11 +249,48 @@ public class Recommender extends EvaluateRecommender {
         allData.add(data);
         System.out.println(" ");
         System.out.println("Estamos en fichero: ");
+        System.out.println("ID: "+numMov);
+        System.out.println("FILM: "+namefilm);
         System.out.println("GENRE: "+genrefilm);
         System.out.println(" ");
         writer.writeAll(allData);
         writer.close();
         numMov++;
+
+        int numName = 164979;
+        String csv2 = "src/main/input/nombres.csv";
+        CSVWriter writer2 = new CSVWriter(new FileWriter(csv2, true));
+        //String[] header= new String[]{"movieId", "title", "genres"};
+        //writer.writeNext(header);
+        List<String[]> allData2 = new ArrayList<String[]>();
+        String[] data2 = new String[]{String.valueOf(numName),name};
+        allData.add(data);
+        System.out.println(" ");
+        System.out.println("Estamos en fichero: ");
+        System.out.println("ID: "+numName);
+        System.out.println("USERNAME: "+name);
+        System.out.println(" ");
+        writer2.writeAll(allData2);
+        writer2.close();
+        numName++;
+
+        int numData = 164979;
+        String csv3 = "src/main/input/dataset.csv";
+        CSVWriter writer3 = new CSVWriter(new FileWriter(csv3, true));
+        //String[] header= new String[]{"movieId", "title", "genres"};
+        //writer.writeNext(header);
+        List<String[]> allData3 = new ArrayList<String[]>();
+        String[] data3 = new String[]{String.valueOf(numMov),namefilm,genrefilm};
+        allData.add(data);
+        System.out.println(" ");
+        System.out.println("Estamos en fichero: ");
+        System.out.println("ID: "+numData);
+        System.out.println("IDUSER: "+numName);
+        System.out.println("IDFILM: "+numMov);
+        System.out.println(" ");
+        writer3.writeAll(allData3);
+        writer3.close();
+        numData++;
 
     }
 
@@ -298,7 +335,7 @@ public class Recommender extends EvaluateRecommender {
         else {
             DataModel model = new FileDataModel(new File("src/main/input/dataset.csv")); //load data from file
             UserSimilarity similarity = new PearsonCorrelationSimilarity(model); //correlation coeficient
-            UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.9, similarity, model); //0.9-->threshold
+            UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.5, similarity, model); //0.9-->threshold
 
             UserBasedRecommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
 

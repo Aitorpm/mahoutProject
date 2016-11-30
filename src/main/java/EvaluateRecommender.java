@@ -34,7 +34,7 @@ public class EvaluateRecommender {
         DataModel model = new FileDataModel(new File("src/main/input/dataset.csv"));
         RecommenderEvaluator evaluator = new AverageAbsoluteDifferenceRecommenderEvaluator();
         RecommenderBuilder builder = new MyRecommenderBuilder();
-        double result = evaluator.evaluate(builder, null, model, 0.9, 1.0); //trainingset-->90% and a testset-->10%
+        double result = evaluator.evaluate(builder, null, model, 0.5, 1.0); //trainingset-->90% and a testset-->10%
         //double resultado = Math.round(result);
         double resultado = result*100;
         BigDecimal big = new BigDecimal(resultado);
@@ -45,7 +45,7 @@ public class EvaluateRecommender {
         System.out.println("|                                                 |");
         //System.out.println("  * Exactitud del Recomendador: "+Math.round(result)*100+"% *");
         //System.out.println("  * Exactitud del Recomendador: "+Math.rint(result*100)+"% *");
-        System.out.println("|      * Exactitud del Recomendador: "+big+"%       |");
+        System.out.println("|      * Accurazy of Recommender: "+big+"%        |");
         System.out.println("|                                                 |");
         System.out.println("===================================================");
     }
