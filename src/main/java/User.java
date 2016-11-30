@@ -1,6 +1,4 @@
-/**
- * Created by aitor on 23/11/16.
- */
+
 public class User {
     private String name;
     private int id;

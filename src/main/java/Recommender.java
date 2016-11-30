@@ -1,6 +1,3 @@
-/**
- * Created by aitor on 16/11/16.
- */
 
 import com.opencsv.CSVReader;
 import com.opencsv.bean.ColumnPositionMappingStrategy;

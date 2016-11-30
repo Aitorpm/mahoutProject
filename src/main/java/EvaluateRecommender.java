@@ -16,10 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.math.RoundingMode;
 
-/**
- * Created by aitor on 17/11/16.
- */
-
 
 public class EvaluateRecommender {
     public static void evaluate() throws IOException, TasteException {

@@ -1,6 +1,4 @@
-/**
- * Created by aitor on 18/11/16.
- */
+
 public class Movie {
     private String movieId;
     private String title;

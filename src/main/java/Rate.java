@@ -1,6 +1,4 @@
-/**
- * Created by aitor on 23/11/16.
- */
+
 public class Rate {
     private int user;
     private int movie;
