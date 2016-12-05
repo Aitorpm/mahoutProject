@@ -3,6 +3,9 @@ import com.opencsv.CSVReader;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 
+import org.apache.commons.beanutils.BeanComparator;
+import org.apache.commons.collections.comparators.ComparableComparator;
+import org.apache.commons.collections.comparators.ReverseComparator;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
@@ -18,15 +21,13 @@ import java.io.FileWriter;
 
 import com.opencsv.CSVWriter;
 import com.opencsv.*;
+import org.apache.mahout.common.IntPairWritable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static java.lang.Thread.*;
 
@@ -461,7 +462,12 @@ public class Recommender extends EvaluateRecommender {
                     myRates.add(rate1);
                 }
             }
-            //ordenar la llista myRates per la valoració que es la variable float "rate" de cada objecte
+            //ORDENA LA LISTA POR VALORACIONES EN ORDEN DESCENDENTE
+            //BeanComparator fieldComparator = new BeanComparator("rate"); PARA ORDEN ASCENDENTE
+            BeanComparator fieldComparator = new BeanComparator("rate",new ReverseComparator(new ComparableComparator()));
+            Collections.sort(myRates,fieldComparator);
+
+
 
             //Read the movies.csv
             String csvFilename2 = "src/main/input/movies.csv";
