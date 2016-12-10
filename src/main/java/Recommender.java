@@ -346,58 +346,56 @@ public class Recommender extends EvaluateRecommender {
 
     static void writeCSV(String name, String namefilm, String genrefilm, int ratefilm) throws IOException {
 
-        int numMov = 164979;
+        int numMov = 164980;
         String csv = "src/main/input/movies.csv";
-        CSVWriter writer = new CSVWriter(new FileWriter(csv, true));
+        CSVWriter writer = new CSVWriter(new FileWriter(csv, true), ',', '\0', "\r\n");
         //String[] header= new String[]{"movieId", "title", "genres"};
         //writer.writeNext(header);
         List<String[]> allData = new ArrayList<String[]>();
         String[] data = new String[]{String.valueOf(numMov), namefilm, genrefilm};
         allData.add(data);
         System.out.println(" ");
-        System.out.println("Estamos en fichero: ");
+        System.out.println("Estamos en fichero: "+ csv);
         System.out.println("ID: " + numMov);
         System.out.println("FILM: " + namefilm);
         System.out.println("GENRE: " + genrefilm);
         System.out.println(" ");
         writer.writeAll(allData);
         writer.close();
-        numMov++;
 
-        int numName = 164979;
+        int numName = 672;
         String csv2 = "src/main/input/nombres.csv";
-        CSVWriter writer2 = new CSVWriter(new FileWriter(csv2, true));
+        CSVWriter writer2 = new CSVWriter(new FileWriter(csv2, true), ',', '\0', "\r\n");
         //String[] header= new String[]{"movieId", "title", "genres"};
         //writer.writeNext(header);
         List<String[]> allData2 = new ArrayList<String[]>();
         String[] data2 = new String[]{String.valueOf(numName), name};
-        allData.add(data);
+        allData2.add(data2);
         System.out.println(" ");
-        System.out.println("Estamos en fichero: ");
+        System.out.println("Estamos en fichero: "+ csv2);
         System.out.println("ID: " + numName);
         System.out.println("USERNAME: " + name);
         System.out.println(" ");
         writer2.writeAll(allData2);
         writer2.close();
-        numName++;
 
-        int numData = 164979;
         String csv3 = "src/main/input/dataset.csv";
-        CSVWriter writer3 = new CSVWriter(new FileWriter(csv3, true));
+        CSVWriter writer3 = new CSVWriter(new FileWriter(csv3, true), ',', '\0', "\r\n");
         //String[] header= new String[]{"movieId", "title", "genres"};
         //writer.writeNext(header);
         List<String[]> allData3 = new ArrayList<String[]>();
-        String[] data3 = new String[]{String.valueOf(numMov), namefilm, genrefilm};
-        allData.add(data);
+        String[] data3 = new String[]{String.valueOf(numName),String.valueOf(numMov), String.valueOf(ratefilm)};
+        allData3.add(data3);
         System.out.println(" ");
-        System.out.println("Estamos en fichero: ");
-        System.out.println("ID: " + numData);
+        System.out.println("Estamos en fichero: "+csv3);
         System.out.println("IDUSER: " + numName);
         System.out.println("IDFILM: " + numMov);
+        System.out.println("IDFILM: " + ratefilm);
         System.out.println(" ");
         writer3.writeAll(allData3);
         writer3.close();
-        numData++;
+        numMov++;
+        numName++;
 
     }
 
