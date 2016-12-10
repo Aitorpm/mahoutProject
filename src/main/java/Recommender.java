@@ -89,7 +89,7 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("========================================================================");
             System.out.println("*                         < Choose an option >                         *");
             System.out.println("========================================================================");
-            int bot = 10;
+            int bot = 2;
             for (int i = 0; i < bot; i++) {
                 System.out.println();
             }
