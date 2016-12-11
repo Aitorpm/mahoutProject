@@ -61,7 +61,7 @@ public class Recommender extends EvaluateRecommender {
         Scanner scanner = new Scanner(System.in);
         Scanner wait = new Scanner(System.in);
         Scanner aux = new Scanner(System.in);
-        while (option != 5) {
+        while (option != 6) {
             //System.out.print("\f");
             //System.out.print("\033[H\033[2J");
             //System.out.flush();
@@ -84,7 +84,9 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("|                                                                      |");
             System.out.println("|                [4] - Evaluate recommender                            |");
             System.out.println("|                                                                      |");
-            System.out.println("|                [5] - Exit                                            |");
+            System.out.println("|                [5] - Add a new film into the system                  |");
+            System.out.println("|                                                                      |");
+            System.out.println("|                [6] - Exit                                            |");
             System.out.println("|                                                                      |");
             System.out.println("========================================================================");
             System.out.println("*                         < Choose an option >                         *");
@@ -158,6 +160,19 @@ public class Recommender extends EvaluateRecommender {
                     break;
 
                 case 5:
+                    System.out.println("");
+                    System.out.print("* Enter the film name: ");
+                    namefilm = aux.nextLine();
+                    System.out.println("");
+                    System.out.print("* Enter the genres film: ");
+                    genrefilm = scanner.next();
+                    newFilm(namefilm, genrefilm);
+                    System.out.println("");
+                    System.out.print("\nPress any key to continue . . . \n");
+                    wait.nextLine();
+                    break;
+
+                case 6:
                     System.out.print("\n...SEE YOU SOON...!  \n");
             }
         }
@@ -273,6 +288,85 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("========================================================================");
             System.out.println("");
         }
+    }
+
+    //functions case 5
+    private static void newFilm(String namefilm, String genrefilm) throws IOException, InterruptedException {
+        int im = -1;
+
+        //Work with movies.csv
+        //Read the movies.csv
+        String csvFilename2 = "src/main/input/movies.csv";
+        CSVReader csvReader2 = new CSVReader(new FileReader(csvFilename2));
+
+        //parse the csv in a list of objects -->allMovies
+        ColumnPositionMappingStrategy strat2 = new ColumnPositionMappingStrategy();
+        strat2.setType(Movie.class);
+        String[] columns2 = new String[]{"movieId", "title", "genres"}; // the fields to bind do in your JavaBean
+        strat2.setColumnMapping(columns2);
+
+        CsvToBean csv2 = new CsvToBean();
+
+        List allMovies = csv2.parse(strat2, csvReader2);
+        for (Object object2 : allMovies) {
+            Movie movie = (Movie) object2;
+            if (movie.getTitle().equals(namefilm)) {
+                im = movie.getMovieId();
+            }
+        }
+        if (im != -1){
+            System.out.println("");
+            System.out.println("=============================================================");
+            System.out.println("");
+            System.out.println("* THIS FILM [ " + namefilm + " ] ALLREADY EXISTS!!");
+            System.out.println("");
+            System.out.println("=============================================================");
+            sleep(1000);
+            System.out.println("");
+            System.out.println("=============================================================");
+            System.out.println("");
+            System.out.println("* INTRODUCE A DIFFERENT FILM!!");
+            System.out.println("");
+            System.out.println("=============================================================");
+            System.out.println("");
+        } else {
+            System.out.println("");
+            System.out.println("=============================================================");
+            System.out.println("");
+            System.out.println("* THIS FILM [ " + namefilm + " ] NOT EXISTS");
+            System.out.println("");
+            System.out.println("=============================================================");
+            System.out.println("");
+            System.out.println("=============================================================");
+            System.out.println("");
+            System.out.println("* YOU SHOULD INTRODUCE THE INFORMATION ABOUT" + namefilm + "...");
+            System.out.println("");
+            System.out.println("=============================================================");
+            System.out.println("");
+            System.out.println("FILM: " + namefilm);
+            System.out.println("GENRES: " + genrefilm);
+            System.out.println("");
+            writeCSVN(namefilm, genrefilm);
+        }
+    }
+
+    private static void writeCSVN(String namefilm, String genrefilm) throws IOException {
+        int numMov = 164978;
+        String csv = "src/main/input/movies.csv";
+        CSVWriter writer = new CSVWriter(new FileWriter(csv, true), ',', '\0', "\r\n");
+        //String[] header= new String[]{"movieId", "title", "genres"};
+        //writer.writeNext(header);
+        List<String[]> allData = new ArrayList<String[]>();
+        String[] data = new String[]{String.valueOf(numMov), namefilm, genrefilm};
+        allData.add(data);
+        System.out.println(" ");
+        System.out.println("Estamos en fichero: "+ csv);
+        System.out.println("ID: " + numMov);
+        System.out.println("FILM: " + namefilm);
+        System.out.println("GENRE: " + genrefilm);
+        System.out.println(" ");
+        writer.writeAll(allData);
+        writer.close();
     }
 
     //functions case 2
@@ -430,23 +524,6 @@ public class Recommender extends EvaluateRecommender {
     }
 
     static void writeCSV(String name, int id, String namefilm, int im, int ratefilm) throws IOException {
-
-//        //int numMov = 164980;
-//        String csv = "src/main/input/movies.csv";
-//        CSVWriter writer = new CSVWriter(new FileWriter(csv, true), ',', '\0', "\r\n");
-//        //String[] header= new String[]{"movieId", "title", "genres"};
-//        //writer.writeNext(header);
-//        List<String[]> allData = new ArrayList<String[]>();
-//        String[] data = new String[]{String.valueOf(im), namefilm};
-//        allData.add(data);
-//        System.out.println(" ");
-//        System.out.println("Estamos en fichero: "+ csv);
-//        System.out.println("ID: " + im);
-//        System.out.println("FILM: " + namefilm);
-//        //System.out.println("GENRE: " + genrefilm);
-//        System.out.println(" ");
-//        writer.writeAll(allData);
-//        writer.close();
 
         int numName = 672;
         if (id == -1){
