@@ -1,14 +1,14 @@
 
 public class Movie {
-    private String movieId;
+    private int movieId;
     private String title;
     private String genres;
 
-    public String getMovieId() {
+    public int getMovieId() {
         return movieId;
     }
 
-    public void setMovieId(String movieId) {
+    public void setMovieId(int movieId) {
         this.movieId = movieId;
     }
 
