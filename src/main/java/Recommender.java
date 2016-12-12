@@ -430,6 +430,65 @@ public class Recommender extends EvaluateRecommender {
         writer.close();
     }
 
+    private static int readNombresTxt() throws IOException {
+        // Fichero del que queremos leer
+        int[] valores= new int[2];
+        int numName = 0;
+        int numMov = 0;
+        int i = 0;
+        File fichero = new File("src/main/input/config.txt");
+        Scanner s = null;
+
+        try {
+            // Leemos el contenido del fichero
+            System.out.println("... Leemos el contenido del fichero ...");
+            s = new Scanner(fichero);
+
+            // Leemos linea a linea el fichero
+            while (s.hasNextLine()) {
+                String linea = s.nextLine();    // Guardamos la linea en un String
+                System.out.println(linea);      // Imprimimos la linea
+                valores[i] = Integer.parseInt( linea );
+                i++;
+            }
+            numName = valores[0];
+            numMov = valores[1];
+            System.out.println("numName: " + numName);
+            System.out.println("numMov: " + numMov);
+            numName++;
+            writeNombresTxt(numName, numMov);
+
+
+        } catch (Exception ex) {
+            System.out.println("Mensaje error1: " + ex.getMessage());
+        } finally {
+            // Cerramos el fichero tanto si la lectura ha sido correcta o no
+            try {
+                if (s != null)
+                    s.close();
+            } catch (Exception ex2) {
+                System.out.println("Mensaje error2: " + ex2.getMessage());
+            }
+        }
+        return numName;
+    }
+
+    private static void writeNombresTxt(int numName, int numMov) {
+
+        FileWriter fichero = null;
+        try {
+
+            fichero = new FileWriter("src/main/input/config.txt");
+            //fichero.write( String.format( "%d\n", numMov ) );
+            fichero.write(numName + "\n");
+            fichero.write(numMov + "\n");
+            fichero.close();
+
+        } catch (Exception ex) {
+            System.out.println("Mensaje de la excepción: " + ex.getMessage());
+        }
+    }
+
     //functions case 2
     static void getNewRate(String name, String namefilm, float ratefilm) throws IOException, TasteException, InterruptedException {
 
@@ -580,7 +639,7 @@ public class Recommender extends EvaluateRecommender {
 
     static void writeCSV(String name, int id, String namefilm, int im, float ratefilm) throws IOException {
 
-        int numName = 672;
+        int numName = readNombresTxt()-1;
         if (id == -1){
             String csv2 = "src/main/input/nombres.csv";
             CSVWriter writer2 = new CSVWriter(new FileWriter(csv2, true), ',', '\0', "\r\n");
