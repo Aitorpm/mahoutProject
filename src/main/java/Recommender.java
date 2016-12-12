@@ -29,6 +29,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+import java.io.File;
+//import java.util.Scanner;
+import java.io.FileWriter;
+
+
+
 import static java.lang.Thread.*;
 
 
@@ -341,12 +347,72 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("FILM: " + namefilm);
             System.out.println("GENRES: " + genrefilm);
             System.out.println("");
-            writeCSVN(namefilm, genrefilm);
+            readMoviesTxt(namefilm, genrefilm);
+            //writeCSVM(namefilm, genrefilm);
         }
     }
 
-    private static void writeCSVN(String namefilm, String genrefilm) throws IOException {
-        int numMov = 164978;
+    private static void readMoviesTxt(String namefilm, String genrefilm) throws IOException {
+        // Fichero del que queremos leer
+        int[] valores= new int[2];
+        int numName = 0;
+        int numMov = 0;
+        int i = 0;
+        File fichero = new File("src/main/input/config.txt");
+        Scanner s = null;
+
+        try {
+            // Leemos el contenido del fichero
+            System.out.println("... Leemos el contenido del fichero ...");
+            s = new Scanner(fichero);
+
+            // Leemos linea a linea el fichero
+            while (s.hasNextLine()) {
+                String linea = s.nextLine(); 	// Guardamos la linea en un String
+                System.out.println(linea);      // Imprimimos la linea
+                valores[i] = Integer.parseInt( linea );
+                i++;
+            }
+            numName = valores[0];
+            numMov = valores[1];
+            System.out.println("numName: " + numName);
+            System.out.println("numMov: " + numMov);
+            writeCSVM(namefilm, genrefilm, numName, numMov);
+            numMov++;
+            writeMovieTxt(numName, numMov);
+
+
+        } catch (Exception ex) {
+            System.out.println("Mensaje error1: " + ex.getMessage());
+        } finally {
+            // Cerramos el fichero tanto si la lectura ha sido correcta o no
+            try {
+                if (s != null)
+                    s.close();
+            } catch (Exception ex2) {
+                System.out.println("Mensaje error2: " + ex2.getMessage());
+            }
+        }
+    }
+
+    private static void writeMovieTxt(int numName, int numMov) {
+
+        FileWriter fichero = null;
+        try {
+
+            fichero = new FileWriter("src/main/input/config.txt");
+            //fichero.write( String.format( "%d\n", numMov ) );
+            fichero.write(numName + "\n");
+            fichero.write(numMov + "\n");
+            fichero.close();
+
+        } catch (Exception ex) {
+            System.out.println("Mensaje de la excepción: " + ex.getMessage());
+        }
+    }
+
+    private static void writeCSVM(String namefilm, String genrefilm, int numName, int numMov) throws IOException {
+
         String csv = "src/main/input/movies.csv";
         CSVWriter writer = new CSVWriter(new FileWriter(csv, true), ',', '\0', "\r\n");
         //String[] header= new String[]{"movieId", "title", "genres"};
