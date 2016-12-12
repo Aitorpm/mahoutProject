@@ -368,7 +368,7 @@ public class Recommender extends EvaluateRecommender {
 
             // Leemos linea a linea el fichero
             while (s.hasNextLine()) {
-                String linea = s.nextLine(); 	// Guardamos la linea en un String
+                String linea = s.nextLine();    // Guardamos la linea en un String
                 System.out.println(linea);      // Imprimimos la linea
                 valores[i] = Integer.parseInt( linea );
                 i++;
