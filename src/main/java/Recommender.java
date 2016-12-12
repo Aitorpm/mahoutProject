@@ -38,7 +38,7 @@ public class Recommender extends EvaluateRecommender {
 
         int option = 0;
         int numRate = 0;
-        int ratefilm = 0;
+        float ratefilm = 0;
 
         String name;
         String namefilm;
@@ -128,12 +128,9 @@ public class Recommender extends EvaluateRecommender {
                     System.out.println("");
                     System.out.print("* Enter the film name: ");
                     namefilm = aux.nextLine();
-//                    System.out.println("");
-//                    System.out.print("* Enter the genres film: ");
-//                    genrefilm = scanner.next();
                     System.out.println("");
                     System.out.print("* Enter your rate film: ");
-                    ratefilm = scanner.nextInt();
+                    ratefilm = scanner.nextFloat();
                     getNewRate(name, namefilm, ratefilm);
                     System.out.println("");
                     System.out.print("\nPress any key to continue . . . \n");
@@ -205,16 +202,16 @@ public class Recommender extends EvaluateRecommender {
         }
         if (id == -1) {
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
             System.out.println("* THE USER [" + user + "] DON'T EXIST...");
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             sleep(1000);
-            System.out.println("|                                                           |");
-            System.out.println("|                       TRY IT NOW!!                        |");
-            System.out.println("|                                                           |");
-            System.out.println("=============================================================");
+            System.out.println("|                                                                     |");
+            System.out.println("|                             TRY IT NOW!!                            |");
+            System.out.println("|                                                                     |");
+            System.out.println("=======================================================================");
             System.out.println("");
         } else {
             DataModel model = new FileDataModel(new File("src/main/input/dataset.csv")); //load data from file
@@ -316,32 +313,30 @@ public class Recommender extends EvaluateRecommender {
         }
         if (im != -1){
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
             System.out.println("* THIS FILM [ " + namefilm + " ] ALLREADY EXISTS!!");
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             sleep(1000);
             System.out.println("");
-            System.out.println("=============================================================");
             System.out.println("");
             System.out.println("* INTRODUCE A DIFFERENT FILM!!");
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
         } else {
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
             System.out.println("* THIS FILM [ " + namefilm + " ] NOT EXISTS");
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
-            System.out.println("=============================================================");
             System.out.println("");
-            System.out.println("* YOU SHOULD INTRODUCE THE INFORMATION ABOUT" + namefilm + "...");
+            System.out.println("* YOU SHOULD INTRODUCE THE INFORMATION ABOUT" + namefilm);
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
             System.out.println("FILM: " + namefilm);
             System.out.println("GENRES: " + genrefilm);
@@ -370,7 +365,7 @@ public class Recommender extends EvaluateRecommender {
     }
 
     //functions case 2
-    static void getNewRate(String name, String namefilm, int ratefilm) throws IOException, TasteException, InterruptedException {
+    static void getNewRate(String name, String namefilm, float ratefilm) throws IOException, TasteException, InterruptedException {
 
         int id = -1;
         int im = -1;
@@ -420,34 +415,32 @@ public class Recommender extends EvaluateRecommender {
 
         if (id != -1) {
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
             System.out.println("* WELCOME ANOTHER TIME " + name + " MAKE YOUR RATE!");
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             sleep(1000);
             System.out.println("");
-            System.out.println("=============================================================");
             System.out.println("");
             System.out.println("* THE OLDER IDUSER = [" + id + "] ");
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
 
             if (im != -1){
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 System.out.println("");
                 System.out.println("* THIS FILM [ " + namefilm + " ] ALLREADY EXISTS!!");
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 sleep(1000);
                 System.out.println("");
-                System.out.println("=============================================================");
                 System.out.println("");
                 System.out.println("* THE OLDER IDMOVIE = [" + im + "] ");
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 System.out.println("");
                 System.out.println("NAME: " + name);
                 System.out.println("FILM: " + namefilm);
@@ -456,49 +449,46 @@ public class Recommender extends EvaluateRecommender {
                 writeCSV(name, id, namefilm, im, ratefilm);
             } else {
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 System.out.println("");
                 System.out.println("* THIS FILM [ " + namefilm + " ] NOT EXISTS");
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 System.out.println("");
-                System.out.println("=============================================================");
                 System.out.println("");
                 System.out.println("* YOU SHOULD INTRODUCE [ " + namefilm + " ] INTO THE SYSTEM PREVIOUSLY");
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 System.out.println("");
             }
         } else {
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
             System.out.println("* IS YOUR FIRST TIME, WELCOME " + name + " MAKE YOUR RATE!");
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
-            System.out.println("=============================================================");
             System.out.println("");
             System.out.println("* THE NEW IDUSER = [" + id + "] ");
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
 
 
             if (im != -1){
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 System.out.println("");
                 System.out.println("* THIS FILM [ " + namefilm + " ] ALLREADY EXISTS!!");
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 sleep(1000);
                 System.out.println("");
-                System.out.println("=============================================================");
                 System.out.println("");
                 System.out.println("* THE OLDER IDMOVIE = [" + im + "] ");
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 System.out.println("");
                 System.out.println("NAME: " + name);
                 System.out.println("FILM: " + namefilm);
@@ -507,23 +497,22 @@ public class Recommender extends EvaluateRecommender {
                 writeCSV(name, id, namefilm, im, ratefilm);
             } else {
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 System.out.println("");
                 System.out.println("* THIS FILM [ " + namefilm + " ] NOT EXISTS");
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 System.out.println("");
-                System.out.println("=============================================================");
                 System.out.println("");
                 System.out.println("* YOU SHOULD INTRODUCE [ " + namefilm + " ] INTO THE SYSTEM PREVIOUSLY");
                 System.out.println("");
-                System.out.println("=============================================================");
+                System.out.println("=======================================================================");
                 System.out.println("");
             }
         }
     }
 
-    static void writeCSV(String name, int id, String namefilm, int im, int ratefilm) throws IOException {
+    static void writeCSV(String name, int id, String namefilm, int im, float ratefilm) throws IOException {
 
         int numName = 672;
         if (id == -1){
@@ -600,16 +589,16 @@ public class Recommender extends EvaluateRecommender {
         }
         if (id == -1) {
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             System.out.println("");
             System.out.println("* THE USER [" + user + "] DON'T EXIST...");
             System.out.println("");
-            System.out.println("=============================================================");
+            System.out.println("=======================================================================");
             sleep(1000);
-            System.out.println("|                                                           |");
-            System.out.println("|                       TRY IT NOW!!                        |");
-            System.out.println("|                                                           |");
-            System.out.println("=============================================================");
+            System.out.println("|                                                                     |");
+            System.out.println("|                             TRY IT NOW!!                            |");
+            System.out.println("|                                                                     |");
+            System.out.println("=======================================================================");
             System.out.println("");
         } else {
 
