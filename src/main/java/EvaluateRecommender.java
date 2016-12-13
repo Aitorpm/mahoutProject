@@ -41,7 +41,7 @@ public class EvaluateRecommender {
         System.out.println("|                                                 |");
         //System.out.println("  * Exactitud del Recomendador: "+Math.round(result)*100+"% *");
         //System.out.println("  * Exactitud del Recomendador: "+Math.rint(result*100)+"% *");
-        System.out.println("|      * Accurazy of Recommender: "+big+"%        |");
+        System.out.println("|      * Accurazy of Recommender: "+big+"%          |");
         System.out.println("|                                                 |");
         System.out.println("===================================================");
     }
