@@ -360,7 +360,7 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
             System.out.println("=======================================================================");
             System.out.println("");
-            System.out.println("* THIS FILM [ " + namefilm + " ] ALLREADY EXISTS!!");
+            System.out.println("* THE FILM [ " + namefilm + " ] ALLREADY EXISTS!!");
             System.out.println("");
             System.out.println("=======================================================================");
             sleep(1000);
@@ -374,18 +374,18 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
             System.out.println("=======================================================================");
             System.out.println("");
-            System.out.println("* THIS FILM [ " + namefilm + " ] NOT EXISTS");
+            System.out.println("* THE FILM [ " + namefilm + " ] HAS BEEN ADDED TO THE SYSTEM");
             System.out.println("");
             System.out.println("=======================================================================");
             System.out.println("");
-            System.out.println("");
+            /*System.out.println("");
             System.out.println("* YOU SHOULD INTRODUCE THE INFORMATION ABOUT" + namefilm);
             System.out.println("");
             System.out.println("=======================================================================");
             System.out.println("");
             System.out.println("FILM: " + namefilm);
             System.out.println("GENRES: " + genrefilm);
-            System.out.println("");
+            System.out.println("");*/
             readMoviesTxt(namefilm, genrefilm);
             //writeCSVM(namefilm, genrefilm);
         }
@@ -402,20 +402,20 @@ public class Recommender extends EvaluateRecommender {
 
         try {
             // Leemos el contenido del fichero
-            System.out.println("... Leemos el contenido del fichero ...");
+            //System.out.println("... Leemos el contenido del fichero ...");
             s = new Scanner(fichero);
 
             // Leemos linea a linea el fichero
             while (s.hasNextLine()) {
                 String linea = s.nextLine();    // Guardamos la linea en un String
-                System.out.println(linea);      // Imprimimos la linea
+                //System.out.println(linea);      // Imprimimos la linea
                 valores[i] = Integer.parseInt( linea );
                 i++;
             }
             numName = valores[0];
             numMov = valores[1];
-            System.out.println("numName: " + numName);
-            System.out.println("numMov: " + numMov);
+            //System.out.println("numName: " + numName);
+            //System.out.println("numMov: " + numMov);
             writeCSVM(namefilm, genrefilm, numName, numMov);
             numMov++;
             writeMovieTxt(numName, numMov);
@@ -459,12 +459,12 @@ public class Recommender extends EvaluateRecommender {
         List<String[]> allData = new ArrayList<String[]>();
         String[] data = new String[]{String.valueOf(numMov), namefilm, genrefilm};
         allData.add(data);
-        System.out.println(" ");
+        /*System.out.println(" ");
         System.out.println("Estamos en fichero: "+ csv);
         System.out.println("ID: " + numMov);
         System.out.println("FILM: " + namefilm);
         System.out.println("GENRE: " + genrefilm);
-        System.out.println(" ");
+        System.out.println(" ");*/
         writer.writeAll(allData);
         writer.close();
     }
@@ -480,20 +480,20 @@ public class Recommender extends EvaluateRecommender {
 
         try {
             // Leemos el contenido del fichero
-            System.out.println("... Leemos el contenido del fichero ...");
+            //System.out.println("... Leemos el contenido del fichero ...");
             s = new Scanner(fichero);
 
             // Leemos linea a linea el fichero
             while (s.hasNextLine()) {
                 String linea = s.nextLine();    // Guardamos la linea en un String
-                System.out.println(linea);      // Imprimimos la linea
+                //System.out.println(linea);      // Imprimimos la linea
                 valores[i] = Integer.parseInt( linea );
                 i++;
             }
             numName = valores[0];
             numMov = valores[1];
-            System.out.println("numName: " + numName);
-            System.out.println("numMov: " + numMov);
+            //System.out.println("numName: " + numName);
+            //System.out.println("numMov: " + numMov);
             numName++;
             writeNombresTxt(numName, numMov);
 
@@ -581,26 +581,26 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
             System.out.println("=======================================================================");
             System.out.println("");
-            System.out.println("* WELCOME ANOTHER TIME " + name + " MAKE YOUR RATE!");
+            System.out.println("* WELCOME ANOTHER TIME " + name);
             System.out.println("");
             System.out.println("=======================================================================");
             sleep(1000);
-            System.out.println("");
+            /*System.out.println("");
             System.out.println("");
             System.out.println("* THE OLDER IDUSER = [" + id + "] ");
             System.out.println("");
             System.out.println("=======================================================================");
-            System.out.println("");
+            System.out.println("");*/
 
             if (im != -1){
                 System.out.println("");
                 System.out.println("=======================================================================");
                 System.out.println("");
-                System.out.println("* THIS FILM [ " + namefilm + " ] ALLREADY EXISTS!!");
+                System.out.println("* THE FILM [ " + namefilm + " ] HAS BEEN RATED!!");
                 System.out.println("");
                 System.out.println("=======================================================================");
                 sleep(1000);
-                System.out.println("");
+                /*System.out.println("");
                 System.out.println("");
                 System.out.println("* THE OLDER IDMOVIE = [" + im + "] ");
                 System.out.println("");
@@ -609,7 +609,7 @@ public class Recommender extends EvaluateRecommender {
                 System.out.println("NAME: " + name);
                 System.out.println("FILM: " + namefilm);
                 System.out.println("RATE: " + ratefilm);
-                System.out.println("");
+                System.out.println("");*/
                 writeCSV(name, id, namefilm, im, ratefilm);
             } else {
                 System.out.println("");
@@ -629,27 +629,27 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
             System.out.println("=======================================================================");
             System.out.println("");
-            System.out.println("* IS YOUR FIRST TIME, WELCOME " + name + " MAKE YOUR RATE!");
+            System.out.println("* IS YOUR FIRST TIME, WELCOME " + name);
             System.out.println("");
             System.out.println("=======================================================================");
             System.out.println("");
-            System.out.println("");
+            /*System.out.println("");
             System.out.println("* THE NEW IDUSER = [" + id + "] ");
             System.out.println("");
             System.out.println("=======================================================================");
-            System.out.println("");
+            System.out.println("");*/
 
 
             if (im != -1){
                 System.out.println("");
                 System.out.println("=======================================================================");
                 System.out.println("");
-                System.out.println("* THIS FILM [ " + namefilm + " ] ALLREADY EXISTS!!");
+                System.out.println("* THE FILM [ " + namefilm + " ] HAS BEEN RATED!!");
                 System.out.println("");
                 System.out.println("=======================================================================");
                 sleep(1000);
                 System.out.println("");
-                System.out.println("");
+                /*System.out.println("");
                 System.out.println("* THE OLDER IDMOVIE = [" + im + "] ");
                 System.out.println("");
                 System.out.println("=======================================================================");
@@ -657,7 +657,7 @@ public class Recommender extends EvaluateRecommender {
                 System.out.println("NAME: " + name);
                 System.out.println("FILM: " + namefilm);
                 System.out.println("RATE: " + ratefilm);
-                System.out.println("");
+                System.out.println("");*/
                 writeCSV(name, id, namefilm, im, ratefilm);
             } else {
                 System.out.println("");
@@ -692,11 +692,11 @@ public class Recommender extends EvaluateRecommender {
                 String[] data2 = new String[]{String.valueOf(numName), name};
                 allData2.add(data2);
             }
-            System.out.println(" ");
+            /*System.out.println(" ");
             System.out.println("Estamos en fichero: "+ csv2);
             System.out.println("ID: " + id);
             System.out.println("USERNAME: " + name);
-            System.out.println(" ");
+            System.out.println(" ");*/
             writer2.writeAll(allData2);
             writer2.close();
 
@@ -715,12 +715,12 @@ public class Recommender extends EvaluateRecommender {
             allData3.add(data3);
             numName++;
         }
-        System.out.println(" ");
+        /*System.out.println(" ");
         System.out.println("Estamos en fichero: "+csv3);
         System.out.println("IDUSER: " + id);
         System.out.println("IDFILM: " + im);
         System.out.println("IDFILM: " + ratefilm);
-        System.out.println(" ");
+        System.out.println(" ");*/
         writer3.writeAll(allData3);
         writer3.close();
 
