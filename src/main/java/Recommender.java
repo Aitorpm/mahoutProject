@@ -289,6 +289,19 @@ public class Recommender extends EvaluateRecommender {
 
             //Add in a list all the movies that we recommended -->recommendedList
             List<Movie> recommendedList = new ArrayList<Movie>();
+            System.out.println(recommendedList.size());
+            /*if(recommendedList.size()<1){
+                System.out.println("");
+                System.out.println("");
+                System.out.println("========================================================================");
+                System.out.println("*                                                                      *");
+                System.out.println("*              ...YOU NEED MAKE MORE RATINGS BEFORE...!                *");
+                System.out.println("*                                                                      *");
+                System.out.println("========================================================================");
+                System.out.println("");
+                System.out.println("");
+                return;
+            }*/
             int lineas = 30;
             for (int i = 0; i < lineas; i++) {
                 System.out.println();
