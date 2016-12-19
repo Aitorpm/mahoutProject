@@ -54,7 +54,7 @@ public class Recommender extends EvaluateRecommender {
         System.out.println("----------------------------------------------------------------------------------------------");
         System.out.println("|********************************************************************************************|");
         System.out.println("|*                                                                                          *|");
-        System.out.println("|*                           ...WELCOME TO OUR FILM PREDICTOR...                            *|");
+        System.out.println("|*                           ...WELCOME TO OUR MOVIE RECOMMENDER...                         *|");
         System.out.println("|*                                                                                          *|");
         System.out.println("|********************************************************************************************|");
         System.out.println("----------------------------------------------------------------------------------------------");
@@ -88,13 +88,13 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("*                               MENU                                   *");
             System.out.println("========================================================================");
             System.out.println("|                                                                      |");
-            System.out.println("|                [1] - Predict movies by user name                     |");
+            System.out.println("|                [1] - Recommend movies for a user                     |");
             System.out.println("|                                                                      |");
             System.out.println("|                [2] - Rate a movie                                    |");
             System.out.println("|                                                                      |");
             System.out.println("|                [3] - Show movies rated by a user                     |");
             System.out.println("|                                                                      |");
-            System.out.println("|                [4] - Evaluate recommender                            |");
+            System.out.println("|                [4] - Evaluate the movie recommender                  |");
             System.out.println("|                                                                      |");
             System.out.println("|                [5] - Add a new film into the system                  |");
             System.out.println("|                                                                      |");
