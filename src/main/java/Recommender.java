@@ -289,7 +289,7 @@ public class Recommender extends EvaluateRecommender {
 
             //Add in a list all the movies that we recommended -->recommendedList
             List<Movie> recommendedList = new ArrayList<Movie>();
-            System.out.println(recommendedList.size());
+            //System.out.println(recommendedList.size());
             /*if(recommendedList.size()<1){
                 System.out.println("");
                 System.out.println("");
@@ -326,6 +326,13 @@ public class Recommender extends EvaluateRecommender {
                         aux++;
                     }
                 }
+            }
+            if(aux<2){
+                System.out.println("");
+                System.out.println("------------------------------------------------------------------------");
+                System.out.println("                                                                        ");
+                System.out.println("*    ...YOU NEED MAKE MORE RATINGS FOR OBTAIN RECOMENDED FILMS...!!    *");
+                System.out.println("                                                                        ");
             }
             System.out.println("========================================================================");
             System.out.println("");
