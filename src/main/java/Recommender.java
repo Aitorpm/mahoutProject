@@ -203,6 +203,12 @@ public class Recommender extends EvaluateRecommender {
                     System.out.println("*                       ...SEE YOU SOON...!                            *");
                     System.out.println("*                                                                      *");
                     System.out.println("========================================================================");
+                    break;
+                default:
+                    System.out.println("");
+                    System.out.print("\nYou select an incorrect option. Please select a correct option . . . \n");
+                    wait.nextLine();
+                    break;
             }
         }
     }
