@@ -771,12 +771,6 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("* THE USER [" + user + "] DON'T EXIST...");
             System.out.println("");
             System.out.println("=======================================================================");
-            sleep(1000);
-            System.out.println("|                                                                     |");
-            System.out.println("|            ...YOU NEED MAKE SOME RATINGS BEFORE...!                 |");
-            System.out.println("|                (go to OPTION 2 to rate a movie)                     |");
-            System.out.println("|                                                                     |");
-            System.out.println("=======================================================================");
             System.out.println("");
         } else {
 
