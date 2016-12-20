@@ -236,13 +236,13 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
             System.out.println("=======================================================================");
             System.out.println("");
-            System.out.println("* THE USER [" + user + "] DON'T EXIST...");
+            System.out.println("* THE USER [" + user + "] HAS NEVER RATED ANY MOVIE...");
             System.out.println("");
             System.out.println("=======================================================================");
             sleep(1000);
             System.out.println("|                                                                     |");
-            System.out.println("|                             TRY IT NOW!!                            |");
-            System.out.println("|                                                                     |");
+            System.out.println("|            ...YOU NEED MAKE SOME RATINGS BEFORE...!                 |");
+            System.out.println("|                (go to OPTION 2 to rate a movie)                     |");
             System.out.println("=======================================================================");
             System.out.println("");
         } else {
@@ -258,7 +258,7 @@ public class Recommender extends EvaluateRecommender {
 
         /* Print the id of the items that we recommended
         for (RecommendedItem recommendedItem : recommendations) {
-            System.out.println("ITEM ID:" + recommendedItem.getItemID());
+            System.out.println("ITEM ID:" + 11recommendedItem.getItemID());
         }
         */
 
@@ -332,7 +332,7 @@ public class Recommender extends EvaluateRecommender {
                 System.out.println("------------------------------------------------------------------------");
                 System.out.println("                                                                        ");
                 System.out.println("*    ...YOU NEED MAKE MORE RATINGS FOR OBTAIN RECOMENDED FILMS...!!    *");
-                System.out.println("                                                                        ");
+                System.out.println("*                  (go to OPTION 2 to rate a movie)                    *");
             }
             System.out.println("========================================================================");
             System.out.println("");
