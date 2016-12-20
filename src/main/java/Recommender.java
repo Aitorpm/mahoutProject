@@ -253,7 +253,7 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("");
         } else {
             DataModel model = new FileDataModel(new File("src/main/input/dataset.csv")); //load data from file
-            UserSimilarity similarity = new PearsonCorrelationSimilarity(model); //correlation coeficient
+            UserSimilarity similarity = new PearsonCorrelationSimilarity(model); //correlation coefficient
             UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.5, similarity, model); //0.9-->threshold
 
             UserBasedRecommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
@@ -773,7 +773,8 @@ public class Recommender extends EvaluateRecommender {
             System.out.println("=======================================================================");
             sleep(1000);
             System.out.println("|                                                                     |");
-            System.out.println("|                             TRY IT NOW!!                            |");
+            System.out.println("|            ...YOU NEED MAKE SOME RATINGS BEFORE...!                 |");
+            System.out.println("|                (go to OPTION 2 to rate a movie)                     |");
             System.out.println("|                                                                     |");
             System.out.println("=======================================================================");
             System.out.println("");
